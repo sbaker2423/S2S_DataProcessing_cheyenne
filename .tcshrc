@@ -1,0 +1,51 @@
+# begin cshrc
+
+set path=( . $path /opt/local/bin /opt/local/sbin /opt/local/lib/X11/app-defaults ~/Desktop/ANDY/bin /opt/local/lib/gmt4/bin /glade/apps/opt/udunits )
+
+set XFILESEARCHPATH=( /usr/X11R6/lib/X11/app-defaults /opt/local/lib/X11/app-defaults )
+
+alias ls ls -Frt --color
+alias m more
+alias rm rm -i
+alias xe emacs
+alias le emacs -nw
+alias ssh ssh -X
+alias bc bc -l
+alias nl nl -b a
+alias pico nano
+alias bq bqueues
+alias bj bjobs
+alias gyvnc 'bsub -Is -q geyser -W 2:00 -n 1 -P P48500028 $SHELL'  # geyser VNC
+alias lapvnc 'vncserver -geometry 1260x730' # start vnc for laptop session (fits 1200x800)
+alias ftplim limit stacksize 8388608
+alias gq gladequota
+alias y6 ssh yslogin6
+alias y5 ssh yslogin5
+alias y2 ssh yslogin2
+alias y4 ssh yslogin4
+alias y3 ssh yslogin3
+alias y1 ssh yslogin1
+alias eH 'echo $HOST'
+alias bj 'bjobs | more'
+limit coredumpsize 0
+alias pwd pwd -P
+
+#Custom Prompt setting
+set prompt="%S`whoami`%s%~/>" 
+
+alias bhist bhist -a -l -u sabaker -n 5
+alias use_pgi module swap intel pgi/12.5
+
+# set up for debuggin
+module load R 
+
+#module load python/2.7.5 numpy cdat_lite nco
+
+# used for python class
+#module load python/2.7.5 
+#module load all-python-libs
+#module load netcdf4python cdo
+#module load numpy scipy matplotlib
+#module load cdat_lite nco ncview 
+
+#setenv PYTHONPATH $PYTHONPATH":/glade/u/home/andywood/mylibs/lib/python2.7/site-packages"

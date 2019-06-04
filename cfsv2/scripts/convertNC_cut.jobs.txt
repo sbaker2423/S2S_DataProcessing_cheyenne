@@ -1,0 +1,12 @@
+/glade/u/home/sabaker/cfsv2/scripts/convertNC_cut.csh 1999
+/glade/u/home/sabaker/cfsv2/scripts/convertNC_cut.csh 2000
+/glade/u/home/sabaker/cfsv2/scripts/convertNC_cut.csh 2001
+/glade/u/home/sabaker/cfsv2/scripts/convertNC_cut.csh 2002
+/glade/u/home/sabaker/cfsv2/scripts/convertNC_cut.csh 2003
+/glade/u/home/sabaker/cfsv2/scripts/convertNC_cut.csh 2004
+/glade/u/home/sabaker/cfsv2/scripts/convertNC_cut.csh 2005
+/glade/u/home/sabaker/cfsv2/scripts/convertNC_cut.csh 2006
+/glade/u/home/sabaker/cfsv2/scripts/convertNC_cut.csh 2007
+/glade/u/home/sabaker/cfsv2/scripts/convertNC_cut.csh 2008
+/glade/u/home/sabaker/cfsv2/scripts/convertNC_cut.csh 2009
+/glade/u/home/sabaker/cfsv2/scripts/convertNC_cut.csh 2010

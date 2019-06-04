@@ -1,0 +1,125 @@
+#!/glade/apps/opt/R/3.3.2/intel/16.0.3/bin/Rscript
+
+## different location of Rscript on cheyenne
+## Cheyenne - /glade/u/apps/ch/opt/R/3.4.0/intel/16.0.3/bin/Rscript
+## Caldera - /glade/apps/opt/R/3.3.2/intel/16.0.3/bin/Rscript
+# ================================================
+# 2 - Create monthly correlation grids for
+#     CFSv2 Variables
+#     takes ~45 minutes
+# S. Baker, Feb 2018
+# ================================================
+rm(list=ls())
+
+
+## input arguments
+args = commandArgs(trailingOnly=TRUE)
+
+# test if there is at least one argument: if not, return an error
+if (length(args) == 0) {
+  stop("One argument must be supplied: number eg. 1 specifying the CFSv2 var.", call.=FALSE)
+} else {
+  i = as.numeric(args[1]) #eg 1
+  hru = as.character(args[2]) #eg. 1401
+}
+
+#print(str(i))
+#print(str(hru))
+
+
+## Load libraries
+library(ncdf4)
+library(dplyr)
+library(data.table)
+library(lubridate)
+library(ggplot2)
+library(maps)
+source('/glade/u/home/sabaker/cfsv2/scripts/analysisFunctions.R')
+
+## Directories
+dir_in_precip = '/glade2/scratch2/sabaker/cfsv2/files/2wk_input/'
+dir_in = '/glade2/scratch2/sabaker/cfsv2/files/processed_cfs_season/'
+dir_out = '/glade2/scratch2/sabaker/cfsv2/files/corGrids/'
+
+## loop through each var, yr, biweekly period 
+#i=3
+
+### === INPUTS
+biwk_in = c('1_2', '2_3', '3_4')
+days_in = c('1to14', '8to21', '15to28')
+var_in = c('z500_f', 'pwat_f', 'prmsl_f', 'ocnsst_h', 'pressfc_f', 'q2m_f')
+var_nm = c('HGT_500mb', 'PWAT_entireatmosphere_consideredasasinglelayer_', 'PRMSL_meansealevel', 
+		'POT_5mbelowsealevel', 'PRES_surface', 'SPFH_2maboveground')
+var_y = 'prate'
+#hru= '1401' # no leading zero
+thin_n = 0 # how to thin data
+seasons = c('DJF', 'MAM', 'JJA', 'SON')
+
+print(paste('Variable being processed is', var_in[i], 'for hru', hru))
+
+##### ===== load and read in netCDF files ===== ##### 
+## read in NLDAS obs data for hru
+setwd(dir_in_precip)
+df_precip_nld = readNChru(fileName = paste0('NLDAS_1to14day_' ,var_y, '.nc'), varName = var_y,
+                      fcst = 'nldas', avg_fcst_day = 7, hruFilter = hru)
+colnames(df_precip_nld)[1] <- 'dateraw'
+df_precip_nld$fcst_date <- df_precip_nld$hru <- df_precip_nld$mon <- NULL
+
+## loop through each yr, biweekly period 
+# for (i in 1:length(var_in)) {
+  df_cor_nld <- df_cor_cfs <- list()
+  start_time = Sys.time()
+  for (k in 1:length(biwk_in)) {
+   setwd(dir_in_precip)
+    df_precip_cfs = readNChru(fileName = paste0('cfsv2_', days_in[k], 'day_prate.nc'), varName = 'prate',
+                              fcst = 'cfsv2', avg_fcst_day = 7, hruFilter = hru)
+    colnames(df_precip_cfs)[1] <- 'dateraw' #date is day 1 of fcst'
+    df_precip_cfs$fcst_date <- df_precip_cfs$hru <- df_precip_cfs$mon <- NULL
+    
+    
+    ## loop through months
+    for (j in 1:length(seasons)) {
+      m = seasons[j]
+
+      print(paste0('cfsv2.', var_in[i], '.', biwk_in[k], '.mon.', m, '.rds'))
+      
+      ## read in var for a lead
+      setwd(paste0(dir_in, var_in[i], '/'))
+      df = readNCgrid(fileName = paste0('cfsv2.', biwk_in[k], '.', var_in[i], '.', m, '.nc'), 
+                      varName = var_nm[i], avg_fcst_day = 0,
+                      array = FALSE) # date is day 1 of fcsted period
+      
+      ## thin data - keep only every nth forecast
+      if (thin_n > 0) {
+        dates = unique(df$dateraw)
+        dates_new = dates[seq(1, length(dates), thin_n)]
+        df = df[df$dateraw %in% dates_new, ] 
+      }
+      
+      ## merge and normalize variables
+      df_merge_nld = left_join(df, df_precip_nld, by = 'dateraw', suffix = c('.z500', '.prate'))
+      df_merge_cfs = left_join(df, df_precip_cfs, by = 'dateraw', suffix = c('.z500', '.prate'))
+      
+      ## check for NAs
+      #if (anyNA(df_merge_nld)) { print(paste0('NA in cfsv2.', var_in[i], '.', biwk_in[k], '.mon.', m, '.nc'))}
+      
+      ## remove NA rows
+      df_merge_nld = na.omit(df_merge_nld)
+      df_merge_cfs = na.omit(df_merge_cfs)
+      
+      ## correlate on the grid
+      df_merge_nld = df_merge_nld %>% group_by(lat, lon) %>% summarise(cor = cor(var.z500, var.prate)) ## everything is just one
+      df_merge_cfs = df_merge_cfs %>% group_by(lat, lon) %>% summarise(cor = cor(var.z500, var.prate)) ## everything is just one
+      
+      ## add to list
+      df_cor_nld[[paste0(var_in[i], '.',biwk_in[k], '.', m)]] = df_merge_nld
+      df_cor_cfs[[paste0(var_in[i], '.',biwk_in[k], '.', m)]] = df_merge_cfs
+    }
+  }
+  setwd(dir_out)
+  saveRDS(df_cor_nld, file = paste0(hru, '.seas.', var_y, '.nldas.', var_in[i], '.thinned.', thin_n, '.rds'))
+  saveRDS(df_cor_cfs, file = paste0(hru, '.seas.', var_y, '.cfsv2.', var_in[i], '.thinned.', thin_n, '.rds'))
+  
+  ## time to process and save
+  print(Sys.time() - start_time)
+# }

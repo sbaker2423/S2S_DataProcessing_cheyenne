@@ -1,0 +1,6 @@
+0 /glade/u/home/sabaker/cfsv2/scripts/calc_seasCor_CFSv2.Rscr 1
+1 /glade/u/home/sabaker/cfsv2/scripts/calc_seasCor_CFSv2.Rscr 2
+2 /glade/u/home/sabaker/cfsv2/scripts/calc_seasCor_CFSv2.Rscr 3
+3 /glade/u/home/sabaker/cfsv2/scripts/calc_seasCor_CFSv2.Rscr 4
+4 /glade/u/home/sabaker/cfsv2/scripts/calc_seasCor_CFSv2.Rscr 5
+5 /glade/u/home/sabaker/cfsv2/scripts/calc_seasCor_CFSv2.Rscr 6

@@ -1,0 +1,13 @@
+/glade/u/home/sabaker/cfsv2/scripts/run_poly2poly.map_ts.csh 1999
+/glade/u/home/sabaker/cfsv2/scripts/run_poly2poly.map_ts.csh 2000
+/glade/u/home/sabaker/cfsv2/scripts/run_poly2poly.map_ts.csh 2001
+/glade/u/home/sabaker/cfsv2/scripts/run_poly2poly.map_ts.csh 2002
+/glade/u/home/sabaker/cfsv2/scripts/run_poly2poly.map_ts.csh 2003
+/glade/u/home/sabaker/cfsv2/scripts/run_poly2poly.map_ts.csh 2004
+/glade/u/home/sabaker/cfsv2/scripts/run_poly2poly.map_ts.csh 2005
+/glade/u/home/sabaker/cfsv2/scripts/run_poly2poly.map_ts.csh 2006
+/glade/u/home/sabaker/cfsv2/scripts/run_poly2poly.map_ts.csh 2007
+/glade/u/home/sabaker/cfsv2/scripts/run_poly2poly.map_ts.csh 2008
+/glade/u/home/sabaker/cfsv2/scripts/run_poly2poly.map_ts.csh 2009
+/glade/u/home/sabaker/cfsv2/scripts/run_poly2poly.map_ts.csh 2010
+/glade/u/home/sabaker/cfsv2/scripts/run_poly2poly.map_ts.csh 2011

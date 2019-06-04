@@ -1,0 +1,17 @@
+#!/bin/tcsh
+# submit with bsub < [job.lsf]
+# caldera has 15 cores per node, yellowstone has 16
+# n can be a multiple of this, ptile can't be more than this
+
+#BSUB -P P48500028
+#BSUB -n 1
+#BSUB -J HUCavg_nldas
+#BSUB -W 4
+#BSUB -o /glade/scratch/sabaker/cfsv2/log/HUCavg_cfsv2.%J.out
+#BSUB -e /glade/scratch/sabaker/cfsv2/log/HUCavg_cfsv2.%J.err
+#BSUB -q caldera
+
+setenv MP_PGMMODEL mpmd
+setenv MP_TASK_AFFINITY cpu
+
+mpirun.lsf -cmdfile /glade/u/home/sabaker/nldas/scripts/avg_2wk.jobs.txt

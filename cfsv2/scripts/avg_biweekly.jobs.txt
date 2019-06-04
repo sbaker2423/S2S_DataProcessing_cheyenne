@@ -1,0 +1,13 @@
+/glade/u/home/sabaker/cfsv2/scripts/avg_biweekly.bash 1999
+/glade/u/home/sabaker/cfsv2/scripts/avg_biweekly.bash 2000
+/glade/u/home/sabaker/cfsv2/scripts/avg_biweekly.bash 2001
+/glade/u/home/sabaker/cfsv2/scripts/avg_biweekly.bash 2002
+/glade/u/home/sabaker/cfsv2/scripts/avg_biweekly.bash 2003
+/glade/u/home/sabaker/cfsv2/scripts/avg_biweekly.bash 2004
+/glade/u/home/sabaker/cfsv2/scripts/avg_biweekly.bash 2005
+/glade/u/home/sabaker/cfsv2/scripts/avg_biweekly.bash 2006
+/glade/u/home/sabaker/cfsv2/scripts/avg_biweekly.bash 2007
+/glade/u/home/sabaker/cfsv2/scripts/avg_biweekly.bash 2008
+/glade/u/home/sabaker/cfsv2/scripts/avg_biweekly.bash 2009
+/glade/u/home/sabaker/cfsv2/scripts/avg_biweekly.bash 2010
+/glade/u/home/sabaker/cfsv2/scripts/avg_biweekly.bash 2011

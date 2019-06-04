@@ -1,0 +1,18 @@
+#!/bin/tcsh
+# submit with qsub < [job.lsf]
+# walltime = 2 mins for 2 var
+
+#PBS -N cut_time
+#PBS -A P48500028
+#PBS -q regular
+#PBS -l select=1:ncpus=12:mpiprocs=12
+#PBS -l walltime=00:10:00
+#PBS -m abe
+#PBS -M sarah.a.baker@colorado.edu
+
+mkdir -p /glade/scratch/sabaker/temp
+setenv TMPDIR /glade/scratch/sabaker/temp
+setenv MPI_SHEPHERD true
+
+### Run the executable
+mpiexec_mpt launch_cf.sh /glade/u/home/sabaker/cfsv2/scripts/cut_time.jobs.txt

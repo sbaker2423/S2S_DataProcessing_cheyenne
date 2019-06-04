@@ -1,0 +1,2 @@
+/glade/u/home/sabaker/nmme/scripts/run_poly2poly.map_ts.csh tmp2m
+/glade/u/home/sabaker/nmme/scripts/run_poly2poly.map_ts.csh prate

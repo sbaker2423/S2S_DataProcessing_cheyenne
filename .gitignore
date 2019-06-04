@@ -1,0 +1,7 @@
+# Don't track content of these folders
+R/
+nldas/files/
+nmme/files/
+cfsv2/files/
+cfsv2/scripts/old/
+cfsv2/scripts/cfsv2_huc04_regions.nc

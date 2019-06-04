@@ -1,0 +1,24 @@
+#!/bin/tcsh
+# submit with sbatch [job.lsf]
+# takes 4 hrs per variable
+
+#SBATCH -J dwnld_cfsv2
+#SBATCH -A P48500028
+#SBATCH -C caldera
+#SBATCH -n 12
+#SBATCH --ntasks-per-node=1
+#SBATCH -t 05:00:00
+#SBATCH -p dav
+#SBATCH -e dwnld_cfsv2.err.%J
+#SBATCH -o dwnld_cfsv2.out.%J
+
+### Initialize the Slurm environment
+source /glade/u/apps/opt/slurm_init/init.csh
+
+mkdir -p /glade/scratch/sabaker/temp
+setenv TMPDIR /glade/scratch/sabaker/temp
+
+module load openmpi-slurm
+
+### Use the multiple program flag to specify command file job
+srun --multi-prog /glade/u/home/sabaker/cfsv2/scripts/dwnld_cfsv2.jobs.txt

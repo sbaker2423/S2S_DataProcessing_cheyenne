@@ -1,1 +1,0 @@
-LS_COLORS=$LS_COLORS:'di=0;37:' ; export LS_COLORS

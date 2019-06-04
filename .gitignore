@@ -5,3 +5,7 @@ nmme/files/
 cfsv2/files/
 cfsv2/scripts/old/
 cfsv2/scripts/cfsv2_huc04_regions.nc
+
+# ignore all . files and . folders
+.*/
+!/.gitignore

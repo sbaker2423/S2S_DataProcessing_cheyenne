@@ -139,8 +139,9 @@ ncdump  mapping.cfsv2_to_NHDPlusHUC4.nc | more
 
 ## -- copy these to hydro-c1
 
-### === SUMMARY === ###
-### download and process T and P
+
+### ===          SUMMARY             === ###
+## download and process T and P
 # download gridded data
 	bsub < dwnld_cfsv2.lsf
 # convert to netcdf and regrid
@@ -183,6 +184,8 @@ ncdump  mapping.cfsv2_to_NHDPlusHUC4.nc | more
 
 
 ##### =====  Download and process new CFSv2 Variable (cheyenne) ===== #####
+## for PLSR post-processing work
+
 # download
 	sbatch < dwnld_cfsv2_caldera.lsf
 # convert to netcdf and cut

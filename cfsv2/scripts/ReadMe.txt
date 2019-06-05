@@ -161,6 +161,7 @@ ncdump  mapping.cfsv2_to_NHDPlusHUC4.nc | more
 
 ### === Analysis scripts - hydro-c1 === ###
 # /home/sabaker/s2s/analysis/scripts/cfsv2_analysis
+# copied to cheyenne - cfsv2/scripts/cfsv2_analysis
 ## process bi-weekly average and calculate anomalies
 	2wkAvg_calcAnom.R
 ## seasonal analysis - similar

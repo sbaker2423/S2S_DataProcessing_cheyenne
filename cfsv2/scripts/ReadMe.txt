@@ -1,5 +1,4 @@
-# ======= Process of downloading CFSv2 and averaging in time and space to a daily HUC4 scale forecast 
-======= #
+# ======= Process of downloading CFSv2 and averaging in time and space to a daily HUC4 scale forecast ======= #
 ## /glade/u/home/sabaker/cfsv2/scripts <-- all scripts here
 
 **** Make sure to delete previous set of files so you dont run out of space! ****
